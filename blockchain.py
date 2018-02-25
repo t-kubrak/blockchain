@@ -6,6 +6,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from urllib.parse import urlparse
+import requests
 
 
 class Blockchain(object):
@@ -153,7 +154,7 @@ class Blockchain(object):
 
         # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
-            response = request.get(f'http://{node}/chain')
+            response = requests.get(f'http://{node}/chain')
 
             if response.status_code == 200:
                 length = response.json()['length']
